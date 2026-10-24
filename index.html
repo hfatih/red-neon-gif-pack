@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Neon Gif Pack — 15 Tuşlu Stream Deck & evoX İnteraktif Galeri</title>
+  <style>
+    :root {
+      --bg: #0d0608;
+      --panel: #18090d;
+      --card: #220e14;
+      --card-hover: #32141d;
+      --accent: #ff3355;
+      --accent-glow: rgba(255, 51, 85, 0.45);
+      --text: #fff0f3;
+      --text-muted: #e2a8b3;
+      --border: #441822;
+      --deck-body: #100609;
+      --deck-bezel: #280e15;
+      --key-border: #4d1c26;
+      --key-glow: 0 0 16px rgba(255, 51, 85, 0.4);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      background-image: radial-gradient(circle at 50% 0%, #3a0d16 0%, #0d0608 75%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: rgba(24, 9, 13, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 1.1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff3355, #990022);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px var(--accent-glow);
+      font-size: 1.4rem;
+      overflow: hidden;
+    }
+    .brand-logo img { width: 100%; height: 100%; object-fit: cover; }
+    .brand h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff, #ff6680);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .brand p { font-size: 0.82rem; color: var(--text-muted); }
+    .header-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+    .btn {
+      background: linear-gradient(135deg, #ff3355, #cc0033);
+      color: #fff;
+      padding: 0.55rem 1.2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.25s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px var(--accent-glow);
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 22px var(--accent-glow); }
+    .btn-outline {
+      background: rgba(34, 14, 20, 0.6);
+      border: 1px solid var(--border);
+      color: var(--text);
+      box-shadow: none;
+    }
+    .btn-outline:hover { border-color: var(--accent); background: rgba(255, 51, 85, 0.15); }
+    
+    main { flex: 1; max-width: 1400px; margin: 0 auto; padding: 2.2rem 1.5rem; width: 100%; }
+    
+    /* 15-KEY SIMULATOR */
+    .simulator-container {
+      background: linear-gradient(180deg, rgba(32, 12, 18, 0.9) 0%, rgba(18, 7, 11, 0.95) 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.2rem;
+      margin-bottom: 2.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+      position: relative;
+    }
+    .sim-header { text-align: center; margin-bottom: 1.8rem; }
+    .sim-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: rgba(255, 51, 85, 0.15);
+      border: 1px solid rgba(255, 51, 85, 0.35);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.6rem;
+    }
+    .sim-header h2 { font-size: 1.6rem; font-weight: 800; }
+    .sim-header p { font-size: 0.9rem; color: var(--text-muted); }
+    
+    .deck-frame {
+      background: linear-gradient(145deg, #1a080d, #0d0407);
+      border: 3px solid var(--deck-bezel);
+      border-radius: 28px;
+      padding: 24px 26px;
+      box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.05), inset 0 -8px 20px rgba(0, 0, 0, 0.9), 0 18px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 51, 85, 0.15);
+      position: relative;
+    }
+    .deck-frame::after {
+      content: "STREAM DECK • EVOX RED NEON";
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      font-weight: 800;
+      color: rgba(226, 168, 179, 0.35);
+    }
+    .deck-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 84px);
+      grid-template-rows: repeat(3, 84px);
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .deck-key {
+      width: 84px;
+      height: 84px;
+      background: radial-gradient(circle at 50% 30%, #2a0e16 0%, #0d0407 100%);
+      border: 2px solid var(--key-border);
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+    }
+    .deck-key:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: var(--key-glow), 0 8px 18px rgba(0, 0, 0, 0.8);
+    }
+    .deck-key.active-slot {
+      border-color: #fff;
+      box-shadow: 0 0 24px rgba(255, 51, 85, 0.9), inset 0 0 12px rgba(255, 255, 255, 0.4);
+      transform: scale(1.06);
+    }
+    .deck-key img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .deck-key .slot-num {
+      position: absolute;
+      top: 4px;
+      left: 6px;
+      font-size: 0.6rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.5);
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1px 4px;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    .sim-controls { margin-top: 1.4rem; display: flex; gap: 0.8rem; justify-content: center; }
+    .sim-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .sim-btn:hover { background: var(--panel); color: var(--text); border-color: var(--accent); }
+    
+    /* SEARCH */
+    .search-input-wrap { position: relative; margin-bottom: 2rem; width: 100%; }
+    .search-input {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.85rem 1.4rem 0.85rem 3rem;
+      border-radius: 14px;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .search-input:focus { border-color: var(--accent); box-shadow: 0 0 16px var(--accent-glow); }
+    .search-icon { position: absolute; left: 1.1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+    
+    .gallery-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
+    .gallery-title { font-size: 1.1rem; font-weight: 700; }
+    .gallery-count { font-size: 0.85rem; color: var(--text-muted); }
+    
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(136px, 1fr)); gap: 16px; }
+    .icon-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .icon-card:hover {
+      background: var(--card-hover);
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5), 0 0 16px var(--accent-glow);
+    }
+    .icon-card .img-wrap {
+      width: 88px;
+      height: 88px;
+      border-radius: 14px;
+      background: #100609;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon-card img { width: 100%; height: 100%; object-fit: cover; }
+    .icon-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+    }
+    .icon-cat { font-size: 0.68rem; color: var(--text-muted); }
+    
+    .hint-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(24, 9, 13, 0.95);
+      border: 1px solid var(--accent);
+      color: var(--text);
+      padding: 0.8rem 1.4rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+      font-size: 0.88rem;
+      z-index: 1000;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="brand-logo"><img src="cover.png" alt="Red Neon"></div>
+      <div>
+        <h1>Red Neon Gif Pack</h1>
+        <p>170 Hareketli Kırmızı Neon İkon • evoX & Stream Deck</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a href="Red Neon Gif Pack.evoxpack" class="btn" download>📦 .evoxpack İndir (170 İkon - 21 MB)</a>
+      <a href="purple_neon_gallery.html" class="btn btn-outline">🟣 Purple Neon</a>
+      <a href="valorant_gallery.html" class="btn btn-outline">🎯 Valorant</a>
+      <a href="gif_icons_gallery.html" class="btn btn-outline">✨ Gif Icon Packs</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="simulator-container">
+      <div class="sim-header">
+        <span class="sim-badge">15 Tuşlu Donanım Konsolu</span>
+        <h2>Stream Deck & evoX Canlı Konsol Simülatörü</h2>
+        <p>Aşağıdaki galeriden herhangi bir hareketli ikona tıklayarak seçili tuşa yerleştirin</p>
+      </div>
+      <div class="deck-frame">
+        <div class="deck-grid" id="deckGrid"></div>
+      </div>
+      <div class="sim-controls">
+        <button class="sim-btn" id="btnRandom">🎲 Rastgele 15 Tuş</button>
+        <button class="sim-btn" id="btnReset">↺ Sıfırla</button>
+      </div>
+    </div>
+
+    <div class="search-input-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="Kırmızı neon ikon ara (youtube, twitch, amd, amazon, mikrofon, ses, oyun...)...">
+    </div>
+
+    <div class="gallery-header">
+      <div class="gallery-title" id="galleryTitle">Tüm Kırmızı Neon İkonlar</div>
+      <div class="gallery-count" id="galleryCount">170 İkon Gösteriliyor</div>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </main>
+
+  <div class="hint-toast" id="hintToast">✨ Tuş güncellendi!</div>
+
+  <script>
+    const INITIAL_KEYS = ["Hareketli-Guardians-144x144-YouTube-Gaming.gif", "Hareketli-Guardians-144x144-Discord.gif", "Hareketli-Guardians-144x144-Twitch-Abone-Sohbeti-Açık.gif", "Hareketli-Guardians-144x144-Oyun-Kolu.gif", "Hareketli-Guardians-144x144-Mikrofon-Açık.gif", "Hareketli-Guardians-144x144-Spotify.gif", "Hareketli-Guardians-144x144-Yayın-Bildirimleri-Atla.gif", "Hareketli-Guardians-144x144-Güvenlik-Kamerası.gif", "Hareketli-Guardians-144x144-Ölüm-Yıldızı-1.gif", "Hareketli-Guardians-144x144-AMD.gif", "Hareketli-Guardians-144x144-ASMR.gif", "Hareketli-Guardians-144x144-ASTRO.gif", "Hareketli-Guardians-144x144-Abone-Ol.gif", "Hareketli-Guardians-144x144-Aile.gif", "Hareketli-Guardians-144x144-Amazon.gif"];
+    const ASSETS = [{"name": "AMD", "filename": "Hareketli-Guardians-144x144-AMD.gif", "category": "Kırmızı Neon"}, {"name": "ASMR", "filename": "Hareketli-Guardians-144x144-ASMR.gif", "category": "Kırmızı Neon"}, {"name": "ASTRO", "filename": "Hareketli-Guardians-144x144-ASTRO.gif", "category": "Kırmızı Neon"}, {"name": "Abone-Ol", "filename": "Hareketli-Guardians-144x144-Abone-Ol.gif", "category": "Kırmızı Neon"}, {"name": "Aile", "filename": "Hareketli-Guardians-144x144-Aile.gif", "category": "Kırmızı Neon"}, {"name": "Amazon", "filename": "Hareketli-Guardians-144x144-Amazon.gif", "category": "Kırmızı Neon"}, {"name": "Anlık-Tekrar", "filename": "Hareketli-Guardians-144x144-Anlık-Tekrar.gif", "category": "Kırmızı Neon"}, {"name": "Bethesda", "filename": "Hareketli-Guardians-144x144-Bethesda.gif", "category": "Kırmızı Neon"}, {"name": "Blizzard", "filename": "Hareketli-Guardians-144x144-Blizzard.gif", "category": "Kırmızı Neon"}, {"name": "Boş", "filename": "Hareketli-Guardians-144x144-Boş.gif", "category": "Kırmızı Neon"}, {"name": "Chrome", "filename": "Hareketli-Guardians-144x144-Chrome.gif", "category": "Kırmızı Neon"}, {"name": "Corsair-iCUE", "filename": "Hareketli-Guardians-144x144-Corsair-iCUE.gif", "category": "Kırmızı Neon"}, {"name": "Corsair", "filename": "Hareketli-Guardians-144x144-Corsair.gif", "category": "Kırmızı Neon"}, {"name": "Creative", "filename": "Hareketli-Guardians-144x144-Creative.gif", "category": "Kırmızı Neon"}, {"name": "Discord", "filename": "Hareketli-Guardians-144x144-Discord.gif", "category": "Kırmızı Neon"}, {"name": "Dolar", "filename": "Hareketli-Guardians-144x144-Dolar.gif", "category": "Kırmızı Neon"}, {"name": "Doğrulanmış", "filename": "Hareketli-Guardians-144x144-Doğrulanmış.gif", "category": "Kırmızı Neon"}, {"name": "Dropbox", "filename": "Hareketli-Guardians-144x144-Dropbox.gif", "category": "Kırmızı Neon"}, {"name": "E-Posta", "filename": "Hareketli-Guardians-144x144-E-Posta.gif", "category": "Kırmızı Neon"}, {"name": "Edge", "filename": "Hareketli-Guardians-144x144-Edge.gif", "category": "Kırmızı Neon"}, {"name": "Ekipman-Kiti", "filename": "Hareketli-Guardians-144x144-Ekipman-Kiti.gif", "category": "Kırmızı Neon"}, {"name": "Elgato", "filename": "Hareketli-Guardians-144x144-Elgato.gif", "category": "Kırmızı Neon"}, {"name": "Epic-Games", "filename": "Hareketli-Guardians-144x144-Epic-Games.gif", "category": "Kırmızı Neon"}, {"name": "Erkek-Yüz-Işıltısı", "filename": "Hareketli-Guardians-144x144-Erkek-Yüz-Işıltısı.gif", "category": "Kırmızı Neon"}, {"name": "Facebook-Gaming", "filename": "Hareketli-Guardians-144x144-Facebook-Gaming.gif", "category": "Kırmızı Neon"}, {"name": "Facebook", "filename": "Hareketli-Guardians-144x144-Facebook.gif", "category": "Kırmızı Neon"}, {"name": "Firefox", "filename": "Hareketli-Guardians-144x144-Firefox.gif", "category": "Kırmızı Neon"}, {"name": "GameStop-Hissesi", "filename": "Hareketli-Guardians-144x144-GameStop-Hissesi.gif", "category": "Kırmızı Neon"}, {"name": "Gazete", "filename": "Hareketli-Guardians-144x144-Gazete.gif", "category": "Kırmızı Neon"}, {"name": "Glimesh", "filename": "Hareketli-Guardians-144x144-Glimesh.gif", "category": "Kırmızı Neon"}, {"name": "GoXLR", "filename": "Hareketli-Guardians-144x144-GoXLR.gif", "category": "Kırmızı Neon"}, {"name": "Google", "filename": "Hareketli-Guardians-144x144-Google.gif", "category": "Kırmızı Neon"}, {"name": "Guilded", "filename": "Hareketli-Guardians-144x144-Guilded.gif", "category": "Kırmızı Neon"}, {"name": "Gönder", "filename": "Hareketli-Guardians-144x144-Gönder.gif", "category": "Kırmızı Neon"}, {"name": "Göz-Açık", "filename": "Hareketli-Guardians-144x144-Göz-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Göz-Kapalı", "filename": "Hareketli-Guardians-144x144-Göz-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Güvenlik-Kamerası", "filename": "Hareketli-Guardians-144x144-Güvenlik-Kamerası.gif", "category": "Kırmızı Neon"}, {"name": "Güç-Açık", "filename": "Hareketli-Guardians-144x144-Güç-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Güç-Kapalı", "filename": "Hareketli-Guardians-144x144-Güç-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Hediye", "filename": "Hareketli-Guardians-144x144-Hediye.gif", "category": "Kırmızı Neon"}, {"name": "Instagram", "filename": "Hareketli-Guardians-144x144-Instagram.gif", "category": "Kırmızı Neon"}, {"name": "Intel", "filename": "Hareketli-Guardians-144x144-Intel.gif", "category": "Kırmızı Neon"}, {"name": "Işıklar-Açık", "filename": "Hareketli-Guardians-144x144-Işıklar-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Işıklar-Daha-Karanlık", "filename": "Hareketli-Guardians-144x144-Işıklar-Daha-Karanlık.gif", "category": "Kırmızı Neon"}, {"name": "Işıklar-Daha-Parlak", "filename": "Hareketli-Guardians-144x144-Işıklar-Daha-Parlak.gif", "category": "Kırmızı Neon"}, {"name": "Işıklar-Daha-Soğuk", "filename": "Hareketli-Guardians-144x144-Işıklar-Daha-Soğuk.gif", "category": "Kırmızı Neon"}, {"name": "Işıklar-Daha-Sıcak", "filename": "Hareketli-Guardians-144x144-Işıklar-Daha-Sıcak.gif", "category": "Kırmızı Neon"}, {"name": "Işıklar-Genel", "filename": "Hareketli-Guardians-144x144-Işıklar-Genel.gif", "category": "Kırmızı Neon"}, {"name": "Işıklar-Grup", "filename": "Hareketli-Guardians-144x144-Işıklar-Grup.gif", "category": "Kırmızı Neon"}, {"name": "Işıklar-Kapalı", "filename": "Hareketli-Guardians-144x144-Işıklar-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Işıklar-Çoklu", "filename": "Hareketli-Guardians-144x144-Işıklar-Çoklu.gif", "category": "Kırmızı Neon"}, {"name": "Kadın-Yüz-Işıltısı", "filename": "Hareketli-Guardians-144x144-Kadın-Yüz-Işıltısı.gif", "category": "Kırmızı Neon"}, {"name": "Kaynak-Açık", "filename": "Hareketli-Guardians-144x144-Kaynak-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Kaynak-Kapalı", "filename": "Hareketli-Guardians-144x144-Kaynak-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Kaynak-Metin", "filename": "Hareketli-Guardians-144x144-Kaynak-Metin.gif", "category": "Kırmızı Neon"}, {"name": "Kayıt-Açık", "filename": "Hareketli-Guardians-144x144-Kayıt-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Kayıt-Kapalı", "filename": "Hareketli-Guardians-144x144-Kayıt-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Kayıt", "filename": "Hareketli-Guardians-144x144-Kayıt.gif", "category": "Kırmızı Neon"}, {"name": "Klavye", "filename": "Hareketli-Guardians-144x144-Klavye.gif", "category": "Kırmızı Neon"}, {"name": "Kısayol-Tuşu-Açık", "filename": "Hareketli-Guardians-144x144-Kısayol-Tuşu-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Kısayol-Tuşu-Kapalı", "filename": "Hareketli-Guardians-144x144-Kısayol-Tuşu-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Kısayol-Tuşu", "filename": "Hareketli-Guardians-144x144-Kısayol-Tuşu.gif", "category": "Kırmızı Neon"}, {"name": "Mağaza-Ürünleri", "filename": "Hareketli-Guardians-144x144-Mağaza-Ürünleri.gif", "category": "Kırmızı Neon"}, {"name": "Medya-Durdur", "filename": "Hareketli-Guardians-144x144-Medya-Durdur.gif", "category": "Kırmızı Neon"}, {"name": "Medya-Geri-Sar", "filename": "Hareketli-Guardians-144x144-Medya-Geri-Sar.gif", "category": "Kırmızı Neon"}, {"name": "Medya-Oynat-Duraklat", "filename": "Hareketli-Guardians-144x144-Medya-Oynat-Duraklat.gif", "category": "Kırmızı Neon"}, {"name": "Medya-Sonraki", "filename": "Hareketli-Guardians-144x144-Medya-Sonraki.gif", "category": "Kırmızı Neon"}, {"name": "Medya-Önceki", "filename": "Hareketli-Guardians-144x144-Medya-Önceki.gif", "category": "Kırmızı Neon"}, {"name": "Medya-İleri-Sar", "filename": "Hareketli-Guardians-144x144-Medya-İleri-Sar.gif", "category": "Kırmızı Neon"}, {"name": "Mikrofon-Açık", "filename": "Hareketli-Guardians-144x144-Mikrofon-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Mikrofon-Kapalı", "filename": "Hareketli-Guardians-144x144-Mikrofon-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "MixItUp", "filename": "Hareketli-Guardians-144x144-MixItUp.gif", "category": "Kırmızı Neon"}, {"name": "Mola-Ekranı", "filename": "Hareketli-Guardians-144x144-Mola-Ekranı.gif", "category": "Kırmızı Neon"}, {"name": "Multimedya-Açık", "filename": "Hareketli-Guardians-144x144-Multimedya-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Multimedya-Kapalı", "filename": "Hareketli-Guardians-144x144-Multimedya-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Müzik", "filename": "Hareketli-Guardians-144x144-Müzik.gif", "category": "Kırmızı Neon"}, {"name": "NVIDIA", "filename": "Hareketli-Guardians-144x144-NVIDIA.gif", "category": "Kırmızı Neon"}, {"name": "Nintendo-Switch", "filename": "Hareketli-Guardians-144x144-Nintendo-Switch.gif", "category": "Kırmızı Neon"}, {"name": "Noblechairs", "filename": "Hareketli-Guardians-144x144-Noblechairs.gif", "category": "Kırmızı Neon"}, {"name": "OBS", "filename": "Hareketli-Guardians-144x144-OBS.gif", "category": "Kırmızı Neon"}, {"name": "OnlyFans", "filename": "Hareketli-Guardians-144x144-OnlyFans.gif", "category": "Kırmızı Neon"}, {"name": "Origin", "filename": "Hareketli-Guardians-144x144-Origin.gif", "category": "Kırmızı Neon"}, {"name": "Oyun-Kolu", "filename": "Hareketli-Guardians-144x144-Oyun-Kolu.gif", "category": "Kırmızı Neon"}, {"name": "Oyuncu-Etiketi", "filename": "Hareketli-Guardians-144x144-Oyuncu-Etiketi.gif", "category": "Kırmızı Neon"}, {"name": "Patreon", "filename": "Hareketli-Guardians-144x144-Patreon.gif", "category": "Kırmızı Neon"}, {"name": "Paylaş", "filename": "Hareketli-Guardians-144x144-Paylaş.gif", "category": "Kırmızı Neon"}, {"name": "PlayStation", "filename": "Hareketli-Guardians-144x144-PlayStation.gif", "category": "Kırmızı Neon"}, {"name": "Safari", "filename": "Hareketli-Guardians-144x144-Safari.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-1-Açık", "filename": "Hareketli-Guardians-144x144-Sahne-1-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-1-Kapalı", "filename": "Hareketli-Guardians-144x144-Sahne-1-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-10-Açık", "filename": "Hareketli-Guardians-144x144-Sahne-10-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-10-Kapalı", "filename": "Hareketli-Guardians-144x144-Sahne-10-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-2-Açık", "filename": "Hareketli-Guardians-144x144-Sahne-2-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-2-Kapalı", "filename": "Hareketli-Guardians-144x144-Sahne-2-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-3-Açık", "filename": "Hareketli-Guardians-144x144-Sahne-3-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-3-Kapalı", "filename": "Hareketli-Guardians-144x144-Sahne-3-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-4-Açık", "filename": "Hareketli-Guardians-144x144-Sahne-4-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-4-Kapalı", "filename": "Hareketli-Guardians-144x144-Sahne-4-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-5-Açık", "filename": "Hareketli-Guardians-144x144-Sahne-5-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-5-Kapalı", "filename": "Hareketli-Guardians-144x144-Sahne-5-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-6-Açık", "filename": "Hareketli-Guardians-144x144-Sahne-6-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-6-Kapalı", "filename": "Hareketli-Guardians-144x144-Sahne-6-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-7-Açık", "filename": "Hareketli-Guardians-144x144-Sahne-7-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-7-Kapalı", "filename": "Hareketli-Guardians-144x144-Sahne-7-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-8-Açık", "filename": "Hareketli-Guardians-144x144-Sahne-8-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-8-Kapalı", "filename": "Hareketli-Guardians-144x144-Sahne-8-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-9-Açık", "filename": "Hareketli-Guardians-144x144-Sahne-9-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-9-Kapalı", "filename": "Hareketli-Guardians-144x144-Sahne-9-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-Öğesi-Açık", "filename": "Hareketli-Guardians-144x144-Sahne-Öğesi-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Sahne-Öğesi-Kapalı", "filename": "Hareketli-Guardians-144x144-Sahne-Öğesi-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Ses-Düşük", "filename": "Hareketli-Guardians-144x144-Ses-Düşük.gif", "category": "Kırmızı Neon"}, {"name": "Ses-Kapalı", "filename": "Hareketli-Guardians-144x144-Ses-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Ses-Mikseri", "filename": "Hareketli-Guardians-144x144-Ses-Mikseri.gif", "category": "Kırmızı Neon"}, {"name": "Ses-Orta", "filename": "Hareketli-Guardians-144x144-Ses-Orta.gif", "category": "Kırmızı Neon"}, {"name": "Ses-Yüksek", "filename": "Hareketli-Guardians-144x144-Ses-Yüksek.gif", "category": "Kırmızı Neon"}, {"name": "Skype", "filename": "Hareketli-Guardians-144x144-Skype.gif", "category": "Kırmızı Neon"}, {"name": "Snapchat", "filename": "Hareketli-Guardians-144x144-Snapchat.gif", "category": "Kırmızı Neon"}, {"name": "Spotify", "filename": "Hareketli-Guardians-144x144-Spotify.gif", "category": "Kırmızı Neon"}, {"name": "Steam", "filename": "Hareketli-Guardians-144x144-Steam.gif", "category": "Kırmızı Neon"}, {"name": "Stream-Raiders", "filename": "Hareketli-Guardians-144x144-Stream-Raiders.gif", "category": "Kırmızı Neon"}, {"name": "StreamElements", "filename": "Hareketli-Guardians-144x144-StreamElements.gif", "category": "Kırmızı Neon"}, {"name": "Streamsight", "filename": "Hareketli-Guardians-144x144-Streamsight.gif", "category": "Kırmızı Neon"}, {"name": "Süre-4", "filename": "Hareketli-Guardians-144x144-Süre-4.gif", "category": "Kırmızı Neon"}, {"name": "Tepki", "filename": "Hareketli-Guardians-144x144-Tepki.gif", "category": "Kırmızı Neon"}, {"name": "TikTok", "filename": "Hareketli-Guardians-144x144-TikTok.gif", "category": "Kırmızı Neon"}, {"name": "Trovo", "filename": "Hareketli-Guardians-144x144-Trovo.gif", "category": "Kırmızı Neon"}, {"name": "Twitch-Abone-Sohbeti-Açık", "filename": "Hareketli-Guardians-144x144-Twitch-Abone-Sohbeti-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Twitch-Abone-Sohbeti-Kapalı", "filename": "Hareketli-Guardians-144x144-Twitch-Abone-Sohbeti-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Twitch-Aç", "filename": "Hareketli-Guardians-144x144-Twitch-Aç.gif", "category": "Kırmızı Neon"}, {"name": "Twitch-Başlık", "filename": "Hareketli-Guardians-144x144-Twitch-Başlık.gif", "category": "Kırmızı Neon"}, {"name": "Twitch-Klip", "filename": "Hareketli-Guardians-144x144-Twitch-Klip.gif", "category": "Kırmızı Neon"}, {"name": "Twitch-Reklam", "filename": "Hareketli-Guardians-144x144-Twitch-Reklam.gif", "category": "Kırmızı Neon"}, {"name": "Twitch-Sohbet", "filename": "Hareketli-Guardians-144x144-Twitch-Sohbet.gif", "category": "Kırmızı Neon"}, {"name": "Twitch-Yavaş-Sohbet-Açık", "filename": "Hareketli-Guardians-144x144-Twitch-Yavaş-Sohbet-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Twitch-Yavaş-Sohbet-Kapalı", "filename": "Hareketli-Guardians-144x144-Twitch-Yavaş-Sohbet-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Twitch-Yayın-İşareti", "filename": "Hareketli-Guardians-144x144-Twitch-Yayın-İşareti.gif", "category": "Kırmızı Neon"}, {"name": "Twitch-İfade-Sohbeti-Açık", "filename": "Hareketli-Guardians-144x144-Twitch-İfade-Sohbeti-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Twitch-İfade-Sohbeti-Kapalı", "filename": "Hareketli-Guardians-144x144-Twitch-İfade-Sohbeti-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Twitch-İzleyiciler", "filename": "Hareketli-Guardians-144x144-Twitch-İzleyiciler.gif", "category": "Kırmızı Neon"}, {"name": "Twitch", "filename": "Hareketli-Guardians-144x144-Twitch.gif", "category": "Kırmızı Neon"}, {"name": "Twitter", "filename": "Hareketli-Guardians-144x144-Twitter.gif", "category": "Kırmızı Neon"}, {"name": "Uplay", "filename": "Hareketli-Guardians-144x144-Uplay.gif", "category": "Kırmızı Neon"}, {"name": "Uygulama-Aç", "filename": "Hareketli-Guardians-144x144-Uygulama-Aç.gif", "category": "Kırmızı Neon"}, {"name": "Uygulama", "filename": "Hareketli-Guardians-144x144-Uygulama.gif", "category": "Kırmızı Neon"}, {"name": "Video-Kamera", "filename": "Hareketli-Guardians-144x144-Video-Kamera.gif", "category": "Kırmızı Neon"}, {"name": "X-Gamer", "filename": "Hareketli-Guardians-144x144-X-Gamer.gif", "category": "Kırmızı Neon"}, {"name": "XSplit", "filename": "Hareketli-Guardians-144x144-XSplit.gif", "category": "Kırmızı Neon"}, {"name": "Xbox", "filename": "Hareketli-Guardians-144x144-Xbox.gif", "category": "Kırmızı Neon"}, {"name": "Yayın-Açık", "filename": "Hareketli-Guardians-144x144-Yayın-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Yayın-Bağış-Kavanozu", "filename": "Hareketli-Guardians-144x144-Yayın-Bağış-Kavanozu.gif", "category": "Kırmızı Neon"}, {"name": "Yayın-Başlat", "filename": "Hareketli-Guardians-144x144-Yayın-Başlat.gif", "category": "Kırmızı Neon"}, {"name": "Yayın-Bildirimleri-Atla", "filename": "Hareketli-Guardians-144x144-Yayın-Bildirimleri-Atla.gif", "category": "Kırmızı Neon"}, {"name": "Yayın-Bildirimleri-Duraklat", "filename": "Hareketli-Guardians-144x144-Yayın-Bildirimleri-Duraklat.gif", "category": "Kırmızı Neon"}, {"name": "Yayın-Jenerik-Oynat", "filename": "Hareketli-Guardians-144x144-Yayın-Jenerik-Oynat.gif", "category": "Kırmızı Neon"}, {"name": "Yayın-Kapalı", "filename": "Hareketli-Guardians-144x144-Yayın-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Yayın-Medya-Göster", "filename": "Hareketli-Guardians-144x144-Yayın-Medya-Göster.gif", "category": "Kırmızı Neon"}, {"name": "Yayın-Stüdyo-Modu-Açık", "filename": "Hareketli-Guardians-144x144-Yayın-Stüdyo-Modu-Açık.gif", "category": "Kırmızı Neon"}, {"name": "Yayın-Stüdyo-Modu-Kapalı", "filename": "Hareketli-Guardians-144x144-Yayın-Stüdyo-Modu-Kapalı.gif", "category": "Kırmızı Neon"}, {"name": "Yayın-Çarkıfelek", "filename": "Hareketli-Guardians-144x144-Yayın-Çarkıfelek.gif", "category": "Kırmızı Neon"}, {"name": "YouTube-Gaming", "filename": "Hareketli-Guardians-144x144-YouTube-Gaming.gif", "category": "Kırmızı Neon"}, {"name": "YouTube", "filename": "Hareketli-Guardians-144x144-YouTube.gif", "category": "Kırmızı Neon"}, {"name": "Zamanlayıcı", "filename": "Hareketli-Guardians-144x144-Zamanlayıcı.gif", "category": "Kırmızı Neon"}, {"name": "Zoom", "filename": "Hareketli-Guardians-144x144-Zoom.gif", "category": "Kırmızı Neon"}, {"name": "Çeşitli-Sağ", "filename": "Hareketli-Guardians-144x144-Çeşitli-Sağ.gif", "category": "Kırmızı Neon"}, {"name": "Çeşitli-Sol", "filename": "Hareketli-Guardians-144x144-Çeşitli-Sol.gif", "category": "Kırmızı Neon"}, {"name": "Çoklu-Eylem-1", "filename": "Hareketli-Guardians-144x144-Çoklu-Eylem-1.gif", "category": "Kırmızı Neon"}, {"name": "Çoklu-Eylem-2", "filename": "Hareketli-Guardians-144x144-Çoklu-Eylem-2.gif", "category": "Kırmızı Neon"}, {"name": "Ölüm-Yıldızı-1", "filename": "Hareketli-Guardians-144x144-Ölüm-Yıldızı-1.gif", "category": "Kırmızı Neon"}, {"name": "Ölüm-Yıldızı-2", "filename": "Hareketli-Guardians-144x144-Ölüm-Yıldızı-2.gif", "category": "Kırmızı Neon"}, {"name": "İmleç", "filename": "Hareketli-Guardians-144x144-İmleç.gif", "category": "Kırmızı Neon"}];
+    let activeSlotIndex = 0;
+
+    function resolveImg(imgEl, filename) {
+      imgEl.onerror = function() {
+        if (!this.dataset.tried) {
+          this.dataset.tried = "1";
+          this.src = "icons/" + filename;
+        }
+      };
+      imgEl.src = "icons/" + filename;
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById('hintToast');
+      toast.textContent = text;
+      toast.style.display = 'block';
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => { toast.style.display = 'none'; }, 2200);
+    }
+
+    const deckGrid = document.getElementById('deckGrid');
+    function initDeck(keys) {
+      deckGrid.innerHTML = '';
+      keys.forEach((k, idx) => {
+        const div = document.createElement('div');
+        div.className = 'deck-key' + (idx === activeSlotIndex ? ' active-slot' : '');
+        div.dataset.slot = idx;
+        
+        const slotNum = document.createElement('span');
+        slotNum.className = 'slot-num';
+        slotNum.textContent = (idx + 1);
+        div.appendChild(slotNum);
+        
+        const img = document.createElement('img');
+        resolveImg(img, k);
+        div.appendChild(img);
+        
+        div.onclick = () => {
+          document.querySelectorAll('.deck-key').forEach(k => k.classList.remove('active-slot'));
+          div.classList.add('active-slot');
+          activeSlotIndex = idx;
+          showToast(`Tuş #${idx + 1} seçildi.`);
+        };
+        deckGrid.appendChild(div);
+      });
+    }
+    initDeck(INITIAL_KEYS);
+
+    const galleryGrid = document.getElementById('galleryGrid');
+    function renderGallery(items) {
+      galleryGrid.innerHTML = '';
+      document.getElementById('galleryCount').textContent = `${items.length} İkon Gösteriliyor`;
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'icon-card';
+        card.title = `${item.name} — Tıkla ve Stream Deck'e yerleştir`;
+        
+        const imgWrap = document.createElement('div');
+        imgWrap.className = 'img-wrap';
+        const img = document.createElement('img');
+        img.loading = "lazy";
+        resolveImg(img, item.filename);
+        imgWrap.appendChild(img);
+
+        const nameDiv = document.createElement('div');
+        nameDiv.className = 'icon-name';
+        nameDiv.textContent = item.name;
+
+        const catDiv = document.createElement('div');
+        catDiv.className = 'icon-cat';
+        catDiv.textContent = item.category;
+
+        card.appendChild(imgWrap);
+        card.appendChild(nameDiv);
+        card.appendChild(catDiv);
+
+        card.onclick = () => {
+          const allKeys = deckGrid.querySelectorAll('.deck-key');
+          const targetKey = allKeys[activeSlotIndex] || allKeys[0];
+          if (targetKey) {
+            const keyImg = targetKey.querySelector('img');
+            resolveImg(keyImg, item.filename);
+            showToast(`[Tuş #${activeSlotIndex + 1}] "${item.name}" yerleştirildi!`);
+            allKeys.forEach(k => k.classList.remove('active-slot'));
+            activeSlotIndex = (activeSlotIndex + 1) % 15;
+            allKeys[activeSlotIndex].classList.add('active-slot');
+          }
+        };
+        galleryGrid.appendChild(card);
+      });
+    }
+    renderGallery(ASSETS);
+
+    document.getElementById('searchInput').oninput = (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      const filtered = ASSETS.filter(a => a.name.toLowerCase().includes(q) || a.filename.toLowerCase().includes(q));
+      renderGallery(filtered);
+    };
+
+    document.getElementById('btnReset').onclick = () => {
+      activeSlotIndex = 0;
+      initDeck(INITIAL_KEYS);
+      showToast("Varsayılana sıfırlandı.");
+    };
+
+    document.getElementById('btnRandom').onclick = () => {
+      const shuffled = [...ASSETS].sort(() => 0.5 - Math.random());
+      const r15 = shuffled.slice(0, 15).map(a => a.filename);
+      activeSlotIndex = 0;
+      initDeck(r15);
+      showToast("🎲 Rastgele dolduruldu!");
+    };
+  </script>
+</body>
+</html>
