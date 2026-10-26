@@ -1,7 +1,7 @@
 <div align="center">
   <img src="cover.png" alt="Red Neon Gif Pack Kapak" width="128" height="128">
   <h1>Red Neon Animasyonlu GIF Paketi (170 İkon)</h1>
-  <p><strong>Elgato Stream Deck & evoX İçin 170 Adet Kırmızı Siberpunk Animasyonlu GIF İkonu.</strong></p>
+  <p><strong>Stream & Macro Decks & evoX İçin 170 Adet Kırmızı Siberpunk Animasyonlu GIF İkonu.</strong></p>
 
   <p>
     <strong>Dil / Language:</strong> <a href="README.md"><strong>English</strong></a> | <a href="README.tr.md"><strong>Türkçe</strong></a>

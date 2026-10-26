@@ -1,7 +1,7 @@
 <div align="center">
   <img src="cover.png" alt="Red Neon Gif Pack Cover" width="128" height="128">
   <h1>Red Neon Animated GIF Pack (170 Icons)</h1>
-  <p><strong>170 Crimson & Red Cyberpunk Animated GIF Icons for Elgato Stream Deck & evoX.</strong></p>
+  <p><strong>170 Crimson & Red Cyberpunk Animated GIF Icons for Stream & Macro Decks & evoX.</strong></p>
 
   <p>
     <strong>Language / Dil:</strong> <a href="README.md"><strong>English</strong></a> | <a href="README.tr.md"><strong>Türkçe</strong></a>
@@ -55,7 +55,7 @@ Features:
 
 ## 🚀 Installation & Usage
 
-### 1. Elgato Stream Deck
+### 1. Stream & Macro Decks
 1. Drag any `.gif` from the `icons/` folder directly onto a Stream Deck key.
 2. The Stream Deck software will instantly loop the animated GIF natively.
 

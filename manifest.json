@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "packageType": "icon_pack",
   "name": "Red Neon Gif Pack",
-  "description": "evoX ve Stream Deck için 170 adet yüksek kaliteli hareketli kırmızı neon ikon paketi.",
+  "description": "evoX için 170 adet yüksek kaliteli hareketli kırmızı neon ikon paketi. Yayıncı ve oyun kontrolleri için siberpunk neon animasyonları içerir.",
   "version": "1.0.0",
   "author": {
     "id": "hfatih",
@@ -119,11 +119,6 @@
         "id": "red-neon-hareketli-guardians-144x144-ekipman-kiti",
         "name": "Ekipman-Kiti",
         "path": "assets/icons/Hareketli-Guardians-144x144-Ekipman-Kiti.gif"
-      },
-      {
-        "id": "red-neon-hareketli-guardians-144x144-elgato",
-        "name": "Elgato",
-        "path": "assets/icons/Hareketli-Guardians-144x144-Elgato.gif"
       },
       {
         "id": "red-neon-hareketli-guardians-144x144-epic-games",
@@ -416,11 +411,6 @@
         "path": "assets/icons/Hareketli-Guardians-144x144-OBS.gif"
       },
       {
-        "id": "red-neon-hareketli-guardians-144x144-onlyfans",
-        "name": "OnlyFans",
-        "path": "assets/icons/Hareketli-Guardians-144x144-OnlyFans.gif"
-      },
-      {
         "id": "red-neon-hareketli-guardians-144x144-origin",
         "name": "Origin",
         "path": "assets/icons/Hareketli-Guardians-144x144-Origin.gif"
@@ -434,11 +424,6 @@
         "id": "red-neon-hareketli-guardians-144x144-oyuncu-etiketi",
         "name": "Oyuncu-Etiketi",
         "path": "assets/icons/Hareketli-Guardians-144x144-Oyuncu-Etiketi.gif"
-      },
-      {
-        "id": "red-neon-hareketli-guardians-144x144-patreon",
-        "name": "Patreon",
-        "path": "assets/icons/Hareketli-Guardians-144x144-Patreon.gif"
       },
       {
         "id": "red-neon-hareketli-guardians-144x144-paylaş",
